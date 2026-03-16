@@ -74,11 +74,11 @@
 | Priority fees + block rewards | ~$92M – $97M |
 | **Total Solana Validator Revenue** | **~$330M – $480M** |
 
-**DoubleZero's 5% seat fee on consensus revenue (inflation + block rewards, NOT MEV):**
+**DoubleZero's revenue from this ecosystem:**
 
-- Addressable base: ~$240M – $390M (inflation + block rewards)
-- At 5% fee: **~$12M – $20M/year** at full Solana penetration
-- At current ~40% penetration: **~$5M – $8M/year** estimated current run rate
+- Validators connect for free and earn from publishing shreds via Edge
+- Revenue comes from **traders subscribing to Edge** for low-latency shred data
+- The larger the validator economy, the more valuable the data flowing through DoubleZero's network
 
 ### Mid-Term: Multi-Chain Expansion
 
@@ -133,21 +133,7 @@ This is a paradigm shift: **from B2B toll (taxing validators) → B2B2C marketpl
 
 ---
 
-### Phased Fee Structure (Official Roadmap)
-
-The full fee roadmap, per DoubleZero's own documentation:
-
-| Phase | Fee | Timeline |
-|-------|-----|----------|
-| **Short-term** | 5% of priority fees | Epoch 859–938 (Oct 2025 – Mar 2026) |
-| **Medium-term** | 5% of Jito tips | TBD |
-| **Long-term** | 5% of inflation rewards | TBD |
-
-**Important nuance**: The Epoch 939 block reward fee exemption appears to be a tactical move to accelerate adoption while Edge subscription revenue ramps up. The phased fee roadmap (priority fees → Jito tips → inflation) may still apply in the future, but the immediate pivot to Edge signals that DoubleZero is exploring whether a **market data business** can be the primary revenue engine.
-
----
-
-### Revenue Stream 1: Edge Market Data Subscriptions (NEW — Primary)
+### Revenue Stream 1: Edge Market Data Subscriptions (Primary)
 
 ```
 [Validators] ---(publish shreds)---> [DoubleZero Edge] ---(multicast delivery)---> [Traders]
@@ -162,11 +148,7 @@ The full fee roadmap, per DoubleZero's own documentation:
 - **Who earns**: Validators who publish shreds earn from subscription revenue
 - **Real-world analogue**: NYSE/NASDAQ market data feeds ($6–7B/year industry), Bloomberg Terminal subscriptions
 
-### Revenue Stream 2: Seat Fees (Paused/Evolving)
-
-The original 5% seat fee model on block rewards has been paused as of Epoch 939. It may return in modified form targeting Jito tips and/or inflation rewards per the phased roadmap.
-
-### Revenue Stream 3: dzSOL Liquid Staking
+### Revenue Stream 2: dzSOL Liquid Staking
 
 - DoubleZero launched a **3 million SOL stake pool** (~$537M) with liquid staking token **dzSOL**
 - dzSOL represents delegated stake to DoubleZero-connected validators
@@ -253,7 +235,7 @@ Austin Federa's own analogy. He stated: *"I think one of the easiest ways to exp
 - **DoubleZero** is philosophically inverted: instead of slowing everyone down to level the field, it **speeds everyone up** by making dedicated fiber accessible to all validators
 - **Similarity**: Both address infrastructure fairness in financial systems
 - **Difference**: IEX decelerates; DoubleZero accelerates
-- **IEX revenue model**: Transaction fees per share traded. DoubleZero: % of validator revenue
+- **IEX revenue model**: Transaction fees per share traded. DoubleZero: Edge market data subscriptions from traders
 
 ### 2. Equinix (Data Center Interconnection)
 
@@ -294,7 +276,7 @@ Austin Federa's own analogy. He stated: *"I think one of the easiest ways to exp
 | Akamai | $3.8B | Content delivery + security |
 | HFT fiber (industry) | $2–5B est. | Low-latency trading infrastructure |
 | Dark fiber leasing (US) | $1.4B | Unused fiber monetization |
-| **Solana validator economy** | **$330–480M** | **5% seat fee = $12–20M immediate** |
+| **Solana validator economy** | **$330–480M** | **Edge subscriptions from traders for shred data** |
 
 ---
 
@@ -305,19 +287,19 @@ Austin Federa's own analogy. He stated: *"I think one of the easiest ways to exp
 - ~40% of Solana stakeweight on DoubleZero
 - 70+ high-performance fiber links across 5 continents
 - 300+ blockchain validators served
-- Estimated revenue run rate: $5–8M/year (based on 40% of Solana validator consensus revenue at 5%)
+- Revenue transitioning to Edge subscriptions + dzSOL staking commissions
 
 ### Growth Vectors
 
 **Vector 1: Deeper Solana Penetration (2026)**
 - From 40% to 70–80% of Solana stakeweight
-- Revenue doubles to $10–16M/year
+- More validators = more shred publishers = richer Edge data product = more trader subscriptions
 - Network effects: as more validators join, non-participants fall further behind in performance
 
 **Vector 2: Multi-Chain Expansion (Q1–Q2 2026)**
-- Ethereum validators (~$1B+ annual consensus revenue) at 5% = $50M+ addressable
-- Cosmos, Sui, Aptos ecosystems
-- Each new chain multiplies addressable revenue
+- Ethereum, Cosmos, Sui, Aptos ecosystems
+- Each new chain adds more validators publishing data + more traders subscribing to Edge
+- Multiplies both supply-side (validators) and demand-side (traders) of the marketplace
 
 **Vector 3: RPC & Infrastructure Services (2026)**
 - RPC node integration (started Nov 2025)
@@ -336,9 +318,9 @@ Austin Federa's own analogy. He stated: *"I think one of the easiest ways to exp
 
 | Phase | Revenue Source | Est. Annual Revenue |
 |-------|--------------|-------------------|
-| Oct 2025 – Mar 2026 | Solana seat fees (5% block rewards) | $5–8M |
+| Oct 2025 – Mar 2026 | Solana seat fees (discontinued) | Historical |
 | Mar 2026+ (current) | Edge subscriptions + dzSOL staking commissions | Revenue ramp TBD |
-| Near-term (late 2026) | Edge multi-chain + resumed phased fees (Jito tips) | $20–50M |
+| Near-term (late 2026) | Edge multi-chain expansion | $20–50M |
 | Medium-term (2027) | + RPC, oracle, bridge fees + Edge expansion | $50–150M |
 | Long-term (2028+) | + CDN, gaming, enterprise data feeds | $150M+ |
 
@@ -360,32 +342,42 @@ Even capturing a small share of crypto market data demand could dwarf the origin
 
 - **Bull case**: DoubleZero becomes the default infrastructure layer for all high-performance blockchains + Edge becomes the Bloomberg Terminal of crypto block data. Multi-billion dollar revenue
 - **Base case**: Dominant position in Solana + 2–3 other chains, Edge captures meaningful trader subscriptions, $50–150M annual revenue
-- **Bear case**: Remains Solana-only, Edge trader demand disappoints, fee model needs to revert to taxing validators. $10–20M revenue ceiling
+- **Bear case**: Remains Solana-only, Edge trader demand disappoints. $10–20M revenue ceiling
 - **Major risk**: 81% insider token allocation creates persistent sell pressure, potentially undermining token value
 - **New risk from Edge pivot**: If subscription demand from traders is weak, DoubleZero loses both the old fee revenue (paused) and new subscription revenue (unproven), creating a revenue gap
 - **Upside from Edge pivot**: Validators become revenue-earning partners rather than fee-paying customers, dramatically accelerating network adoption
 
 ---
 
-## 8. Subscription Cost Estimation (Using Real-World Analogues)
+## 8. Cost Structure & Value Proposition
 
-Since DoubleZero uses a 5% revenue-share model rather than flat subscriptions, here's the translation:
+### For Validators: Zero Cost, New Revenue
 
-| Validator Size | Annual Consensus Revenue | 5% Seat Fee |
-|---------------|------------------------|-------------|
-| Small (50K SOL staked) | ~$40K | ~$2,000/year |
-| Medium (500K SOL staked) | ~$400K | ~$20,000/year |
-| Large (5M SOL staked) | ~$4M | ~$200,000/year |
-| Top-tier (50M+ SOL staked) | ~$40M+ | ~$2M+/year |
+Validators pay **nothing** to connect to DoubleZero. Instead, they **earn** by publishing shreds via the Edge platform. This is a fundamental shift — DoubleZero went from charging validators to paying them, removing all friction for adoption.
 
-**Real-world comparison:**
+Previously, validators faced these infrastructure costs to achieve similar performance:
 
-- Equinix colocation for a validator: $2,000–10,000/month ($24K–120K/year)
-- Dedicated fiber lease (point-to-point): $5,000–50,000/month
-- HFT microwave/fiber link: $100K–1M+/year
-- AWS Direct Connect: $1,000–10,000/month
+| Infrastructure Alternative | Annual Cost |
+|---------------------------|-------------|
+| Equinix colocation | $24K–120K/year |
+| Dedicated fiber lease (point-to-point) | $60K–600K/year |
+| HFT microwave/fiber link | $100K–1M+/year |
+| AWS Direct Connect | $12K–120K/year |
 
-**Value proposition**: For medium-large validators, DoubleZero's 5% fee is competitive with or cheaper than dedicated colocation + fiber leasing, while providing a better product (global mesh vs. point-to-point).
+DoubleZero replaces all of the above with **free access** to a global fiber mesh — and validators earn on top of it.
+
+### For Traders: Edge Subscription Pricing
+
+Traders and market makers pay subscription fees for access to real-time shred data via DoubleZero Edge. Specific pricing has not been publicly disclosed, but real-world market data analogues suggest the range:
+
+| Market Data Analogue | Typical Annual Cost |
+|---------------------|-------------------|
+| NYSE direct market data feed | $50K–500K+/year |
+| NASDAQ TotalView | $20K–100K+/year |
+| Bloomberg Terminal | ~$25K/year per seat |
+| Crypto co-location + data feeds (current) | $10K–100K+/year |
+
+**Value proposition for traders**: Lowest-latency access to Solana block data via dedicated fiber, comparable to how HFT firms pay for co-location and direct feeds at traditional exchanges.
 
 ---
 
