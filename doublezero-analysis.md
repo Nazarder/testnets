@@ -103,45 +103,111 @@
 
 ## 4. Economic Model — How DoubleZero Makes Money
 
-### Revenue Mechanism: The Seat Fee
+### Economic Model Evolution (Old → New Paradigm)
 
-- Validators pay **5% of consensus-related revenue** (inflation rewards + block rewards) in 2Z tokens
-- NOT per-packet pricing, NOT MEV revenue — only consensus revenue
-- Austin Federa indicated the fee starts lower and increases as the network proves value
-- Seat fees are paid to bandwidth contributors or burned
+DoubleZero's economic model has undergone a **significant pivot** in early 2026. Understanding both the old and new models is critical for assessing the project's trajectory.
 
-### The Three Token Flows
+---
+
+#### Phase 1 (Old Model): Seat Fee on Block Rewards (Epoch 859–938)
+
+- Validators paid **5% of block rewards (signature rewards + priority fees) per epoch**, denominated in SOL
+- Fees started at Epoch 859 (October 4, 2025)
+- Payment due in the epoch following the one fees were incurred
+- Fee tracking via public GitHub repo: [doublezerofoundation/fees](https://github.com/doublezerofoundation/fees)
+- Fee dashboard: https://dz-fees.stakingfacilities.com/
+
+#### Phase 2 (New Model): Edge Platform + Shred Publishing Revenue (Epoch 939+)
+
+**Starting Epoch 939, validators are EXEMPT from the 5% block reward fee.**
+
+The revenue model shifted from taxing validators to a **market data subscription model**:
+
+- **DoubleZero Edge** launched March 11, 2026 — a real-time market data delivery platform built on multicast technology
+- Partnership with **Jito** and **Buffalu** to deliver real-time Solana shreds to traders
+- **Validators now EARN revenue** by publishing shreds, rather than paying fees
+- **Traders pay subscription fees** to access low-latency shred data via Edge
+- This is analogous to how traditional exchanges (NYSE, NASDAQ) sell market data feeds
+
+This is a paradigm shift: **from B2B toll (taxing validators) → B2B2C marketplace (validators publish, traders subscribe)**.
+
+---
+
+### Phased Fee Structure (Official Roadmap)
+
+The full fee roadmap, per DoubleZero's own documentation:
+
+| Phase | Fee | Timeline |
+|-------|-----|----------|
+| **Short-term** | 5% of priority fees | Epoch 859–938 (Oct 2025 – Mar 2026) |
+| **Medium-term** | 5% of Jito tips | TBD |
+| **Long-term** | 5% of inflation rewards | TBD |
+
+**Important nuance**: The Epoch 939 block reward fee exemption appears to be a tactical move to accelerate adoption while Edge subscription revenue ramps up. The phased fee roadmap (priority fees → Jito tips → inflation) may still apply in the future, but the immediate pivot to Edge signals that DoubleZero is exploring whether a **market data business** can be the primary revenue engine.
+
+---
+
+### Revenue Stream 1: Edge Market Data Subscriptions (NEW — Primary)
 
 ```
-[Validators] ---(5% seat fee in 2Z)---> [Protocol]
-                                            |
-                        +-------------------+-------------------+
-                        |                                       |
-                   [50% Burned]                    [50% Reminted to Contributors]
-                                                        |
-                                              (Shapley value allocation)
-                                                        |
-                                    [Fiber providers, FPGA operators, etc.]
+[Validators] ---(publish shreds)---> [DoubleZero Edge] ---(multicast delivery)---> [Traders]
+                                                                |
+                                                    [Traders pay subscription fees]
+                                                                |
+                                              [Revenue split: Validators + Protocol]
 ```
 
-1. **Revenue Flow**: Users pay 2Z for bandwidth access and routing
+- **What**: Real-time Solana shred data delivered via multicast over DoubleZero's fiber network
+- **Who pays**: Traders, market makers, HFT firms, searchers — anyone needing lowest-latency block data
+- **Who earns**: Validators who publish shreds earn from subscription revenue
+- **Real-world analogue**: NYSE/NASDAQ market data feeds ($6–7B/year industry), Bloomberg Terminal subscriptions
+
+### Revenue Stream 2: Seat Fees (Paused/Evolving)
+
+The original 5% seat fee model on block rewards has been paused as of Epoch 939. It may return in modified form targeting Jito tips and/or inflation rewards per the phased roadmap.
+
+### Revenue Stream 3: dzSOL Liquid Staking
+
+- DoubleZero launched a **3 million SOL stake pool** (~$537M) with liquid staking token **dzSOL**
+- dzSOL represents delegated stake to DoubleZero-connected validators
+- Current dzSOL market cap: ~$705M
+- Revenue: standard staking commission from delegated SOL
+- Strategic purpose: incentivize validators to join DoubleZero network; strengthen decentralization via geographic delegation rings
+
+### What the New Paradigm Means for Growth
+
+The Edge pivot is strategically significant:
+
+1. **Removes friction for validator adoption** — no more 5% tax, validators now earn MORE by joining
+2. **Opens a new customer segment** — traders/HFT firms willing to pay premium for latency advantage
+3. **Creates a real-world comparable business** — market data feeds (NYSE earns ~$3B/year from data services)
+4. **Better unit economics** — subscription revenue from thousands of traders > percentage tax from hundreds of validators
+5. **Potential risk** — if trader demand for shred data is lower than expected, the old fee model may need to return
+
+---
+
+### Underlying Token Mechanics (Unchanged)
+
+#### The Three Token Flows
+
+1. **Revenue Flow**: Users pay 2Z for bandwidth access and routing (fees may be paid in SOL and converted)
 2. **Rewards Flow**: Contributors receive 2Z based on **Shapley value** — measuring each contributor's marginal improvement vs. public internet fallback
 3. **Staking Flow**: Controllers stake tokens to manage operations; bandwidth providers stake as collateral
 
-### Burn-and-Remint Mechanism
+#### Burn-and-Remint Mechanism
 
 - All seat fees denominated in 2Z are **burned**
 - 50% of burned tokens are **reminted** to bandwidth contributors as rewards
 - Net effect: 50% of fees are permanently destroyed, creating deflationary pressure proportional to usage
 - Long-term design: cumulative inflation bounded by cumulative burning
 
-### "Proof of Utility" (Not PoW or PoS)
+#### "Proof of Utility" (Not PoW or PoS)
 
 - Rewards proportional to **useful work done**, measured via Shapley value
 - Each contributor's reward = their marginal contribution to network speed/throughput vs. the public internet baseline
 - This prevents gaming (e.g., sending fake traffic to boost rewards)
 
-### Anti-"DePIN-flationary" Design
+#### Anti-"DePIN-flationary" Design
 
 - Contributors are ONLY rewarded from actual fee revenue, not from token inflation
 - No governance token mechanics at launch
@@ -266,21 +332,38 @@ Austin Federa's own analogy. He stated: *"I think one of the easiest ways to exp
 - CDN, gaming, ML training infrastructure
 - This is where the TAM explodes from hundreds of millions to potentially billions
 
-### Revenue Model Evolution
+### Revenue Model Evolution (Updated with Edge Pivot)
 
 | Phase | Revenue Source | Est. Annual Revenue |
 |-------|--------------|-------------------|
-| Current (2026) | Solana seat fees | $5–8M |
-| Near-term (late 2026) | Multi-chain seat fees | $20–50M |
-| Medium-term (2027) | + RPC, oracle, bridge fees | $50–150M |
-| Long-term (2028+) | + CDN, gaming, enterprise | $150M+ |
+| Oct 2025 – Mar 2026 | Solana seat fees (5% block rewards) | $5–8M |
+| Mar 2026+ (current) | Edge subscriptions + dzSOL staking commissions | Revenue ramp TBD |
+| Near-term (late 2026) | Edge multi-chain + resumed phased fees (Jito tips) | $20–50M |
+| Medium-term (2027) | + RPC, oracle, bridge fees + Edge expansion | $50–150M |
+| Long-term (2028+) | + CDN, gaming, enterprise data feeds | $150M+ |
+
+### New TAM Consideration: Market Data Feeds
+
+The Edge pivot opens a **massive new addressable market**:
+
+| Market Data Analogue | Annual Revenue |
+|---------------------|---------------|
+| NYSE market data services | ~$3B/year |
+| NASDAQ market data | ~$2B/year |
+| Bloomberg Terminal subscriptions | ~$6B/year |
+| Refinitiv (LSEG) data services | ~$7B/year |
+| **Crypto market data (total est.)** | **$500M–1B/year** |
+
+Even capturing a small share of crypto market data demand could dwarf the original seat fee model.
 
 ### Key Assumptions & Risks
 
-- **Bull case**: DoubleZero becomes the default infrastructure layer for all high-performance blockchains, comparable to how AWS became default cloud. Multi-billion dollar revenue
-- **Base case**: Dominant position in Solana + 2–3 other chains, $50–150M annual revenue
-- **Bear case**: Remains Solana-only, fee compression, competition from centralized alternatives. $10–20M revenue ceiling
-- **Major risk**: 81% insider token allocation creates persistent sell pressure, potentially undermining token value and the fee model
+- **Bull case**: DoubleZero becomes the default infrastructure layer for all high-performance blockchains + Edge becomes the Bloomberg Terminal of crypto block data. Multi-billion dollar revenue
+- **Base case**: Dominant position in Solana + 2–3 other chains, Edge captures meaningful trader subscriptions, $50–150M annual revenue
+- **Bear case**: Remains Solana-only, Edge trader demand disappoints, fee model needs to revert to taxing validators. $10–20M revenue ceiling
+- **Major risk**: 81% insider token allocation creates persistent sell pressure, potentially undermining token value
+- **New risk from Edge pivot**: If subscription demand from traders is weak, DoubleZero loses both the old fee revenue (paused) and new subscription revenue (unproven), creating a revenue gap
+- **Upside from Edge pivot**: Validators become revenue-earning partners rather than fee-paying customers, dramatically accelerating network adoption
 
 ---
 
@@ -308,6 +391,13 @@ Since DoubleZero uses a 5% revenue-share model rather than flat subscriptions, h
 
 ## Sources
 
+- [DoubleZero — Edge Market Data Platform](https://doublezero.xyz/journal/doublezero-introduces-edge-a-new-real-time-market-data-platform)
+- [DoubleZero — Expanding Validator Revenue](https://doublezero.xyz/journal/expanding-validator-revenue-on-doublezero)
+- [DoubleZero — The Short and Long of Validator Economics](https://doublezero.xyz/journal/the-short-and-long-of-validator-economics)
+- [DoubleZero Foundation Fees Repo](https://github.com/doublezerofoundation/fees)
+- [Bitget — DoubleZero Launches Edge](https://www.bitget.com/news/detail/12560605256825)
+- [OurCryptoTalk — Edge Launch](https://web.ourcryptotalk.com/blog/doublezero-launches-edge-for-real-time-solana-shred-data)
+- [CoinDesk — DoubleZero SOL Stake Pool](https://www.coindesk.com/business/2025/07/30/doublezero-launches-3m-sol-stake-pool-to-turbocharge-solana-validator-network)
 - [DoubleZero Official Site](https://doublezero.xyz/)
 - [DoubleZero Tokenomics Disclosure PDF](https://doublezero.xyz/2z-tokenomics-disclosure.pdf)
 - [CoinDesk — Mainnet Launch](https://www.coindesk.com/tech/2025/10/01/doublezero-mainnet-goes-live-with-nearly-21-of-staked-sol-on-board)
